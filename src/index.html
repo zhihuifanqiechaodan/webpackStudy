@@ -1,0 +1,44 @@
+<!--
+ * @Description: 
+ * @Author: Tank
+ * @GitHub: https://github.com/zhihuifanqiechaodan
+ * @Date: 2019-01-18 14:16:59
+ * @LastEditTime: 2019-01-18 16:22:00
+ -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+    <!-- <script src='/bundle.js'></script> -->
+    <script>
+        (function () {
+            let arr = ['a=123', 'b=456']
+            for (let i = 0, len = arr.length; i < len; i++) {
+                let data = arr[i].split('=')
+               window.sessionStorage.setItem(data[0], data[1])
+            }
+        })()
+    </script>
+</body>
+
+</html>
