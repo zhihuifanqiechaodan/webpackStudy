@@ -3,7 +3,7 @@
  * @Author: Tank
  * @GitHub: https://github.com/zhihuifanqiechaodan
  * @Date: 2019-01-18 14:17:17
- * @LastEditTime: 2019-01-19 13:12:12
+ * @LastEditTime: 2019-01-19 17:06:28
  */
 const path = require('path')
 // 启用热跟新的第二步
@@ -29,13 +29,13 @@ module.exports = {
         // 自动打开浏览器
         open: true,
         // 设置启动时候的运行端口
-        port: 3000, 
+        port: 3000,
         /**
          * 指定托管的根目录
          * 使用 contentBase 指令需要指定启动的目录, 同时还需要修改index.html中script标签的src属性
          * 所以推荐使用 html-webpack-plugin 插件配置启动页面(请到main.js中查看介绍)
          */
-        contentBase: 'src',
+        contentBase: '/',
         // 启用热更新的第一步
         hot: true
     },
@@ -50,5 +50,45 @@ module.exports = {
             // 指定生成页面的名称 (注意: 浏览器打开默认访问的是index.html页面)
             filename: 'index.html'
         })
-    ]
+    ],
+    // 这个节点, 用于配置所有第三方模块的"加载器"
+    module: {
+        // 所有第三方模块的匹配规则
+        rules: [{
+            test: /\.css$/, // 配置处理 .css 文件的第三方 loader 规则
+            use: ['style-loader', 'css-loader']
+        }, {
+            test: /\.less$/, // 配置处理 .less 文件的第三方 loader 规则
+            use: ['style-loader', 'css-loader', 'less-loader']
+        }, {
+            test: /\.scss$/, // 配置处理 .scss 文件的第三方 loader 规则                
+            use: ['style-loader', 'css-loader', 'sass-loader']
+        }, {
+            test: /\.(jpg|png|gif|bmp|jpeg)$/, // 配置处理图片路径的第三方 loader 规则 
+            use: [{
+                // 处理图片和字体的第三方loader
+                loader: 'url-loader',
+                options: {
+                    /**
+                     * 详解:
+                     *      limit给定的值是图片的大小, 单位是byte,如果引用的图片大于等于给定的limit值,则不会被转为base64格式的字符串, 如果图片小于给定的 limit 值, 则会被转为base64格式的字符串
+                     * 注意:
+                     *      图片路径虽然不会被转为base64格式的字符串,但是会被转为hash值,主要是为了防止不同文件夹中的图片的重名
+                     */
+                    limit: 171371,
+                    /**
+                     * 详解:
+                     *      如果想要即显示图片的原本名字和格式,但又不想因为重名而显示出同一张图片按照以下配置
+                     *      hash值最多32位, [hash:8] 意味着在图片名称前面放置一个8位的hash值然后通过 "-"连接
+                     *      [name] 设置图片名称为原本的图片名称
+                     *      [ext] 设置图片的格式为原本图片的格式
+                     */
+                    name: '[hash:8]-[name].[ext]'
+                }
+            }]
+        }, {
+            test: /\.(ttf|woff2|woff|eot|svg)/, // 配置处理字体文件的第三方 loader 规则 
+            use: 'url-loader'
+        }]
+    }
 }

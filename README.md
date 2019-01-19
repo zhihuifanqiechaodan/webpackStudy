@@ -3,7 +3,7 @@
  * @Author: Tank
  * @GitHub: https://github.com/zhihuifanqiechaodan
  * @Date: 2019-01-18 14:17:34
- * @LastEditTime: 2019-01-18 14:17:35
+ * @LastEditTime: 2019-01-19 13:34:58
  -->
 
 ## 初步渐进的学习webpack的使
@@ -38,4 +38,4 @@
    ```javascript
    npm init -y
    ```
-2. 剩余关于各个配置介绍请查看项目代码,有详细注释解释
+2. 剩余关于各个配置介绍请查看main.js文件,有详细注释.
