@@ -3,11 +3,11 @@
  * @Author: Tank
  * @GitHub: https://github.com/zhihuifanqiechaodan
  * @Date: 2019-01-18 14:16:47
- * @LastEditTime: 2019-01-18 15:25:03
+ * @LastEditTime: 2019-01-19 13:15:53
  */
 
 // main.js文件项目的入口文件
-
+/**-----------------------------------我是分割线---------------------------------------------------------- */
 /**
  * 使用 webpack-dev-server 这个工具来实现自动编译的功能
  * 第一部分:
@@ -26,14 +26,31 @@
  *      1.webpack-dev-server 帮我们打包生成的bundle.js文件, 并没有存放到实际的物理磁盘上;而是直接托管到了电脑的内存中,所以我们在项目根目录中根本找不到这个打包好的bundle.js文件
  *      2.webpack-dev-server 帮我们打包生成的bundle.js文件, 以一种虚拟的形式托管到了项目的根目录中,虽然看不到这个文件,但是它与src dist等文件平级
  */
-
+/**-----------------------------------我是分割线---------------------------------------------------------- */
  /**
-  * 使用html-webpack-plugin来实现
-  */
+  * 使用html-webpack-plugin来配置启动页面
+  * 第一部分:
+  *     1.运行 npm i html-webpack-plugin --save-dev 安装本地发开依赖
+  *     2.修改webpack.config.js配置文件如下: 具体配置描述在webpack.config.js中查看
+  *     const htmlWebpackPlugin = require('html-webpack-plugin')
+  *     module.exports = {
+  *         plugins:[
+  *             new htmlWebpackPlugin({
+  *                 template: path.join(__dirname, 'src/index.jtml'),
+  *                 filename: 'index.html'
+  *             })
+  *         ]
+  *     }
+  *     3.这时候可以将index.html页面中的script标签注释掉了,因为这个插件会自动把bundle.js注入到index.html页面中
+  * 作用: 
+  *     1.自动在内存中根据指定页面生成一个内存页面
+  *     2.自动把打包好的 bundle.js追加到内存页面中
+  */    
+ /**-----------------------------------我是分割线---------------------------------------------------------- */
 import $ from 'jquery'
 // 隔行变色
 $(function () {
-    $('li:odd').css('background', 'black')
+    $('li:odd').css('background', 'green')
     $('li:even').css('background', function () {
         return "pink"
     })
