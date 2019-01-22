@@ -3,7 +3,7 @@
  * @Author: Tank
  * @GitHub: https://github.com/zhihuifanqiechaodan
  * @Date: 2019-01-18 14:17:17
- * @LastEditTime: 2019-01-19 17:06:28
+ * @LastEditTime: 2019-01-22 15:13:55
  */
 const path = require('path')
 // 启用热跟新的第二步
@@ -55,40 +55,46 @@ module.exports = {
     module: {
         // 所有第三方模块的匹配规则
         rules: [{
-            test: /\.css$/, // 配置处理 .css 文件的第三方 loader 规则
-            use: ['style-loader', 'css-loader']
-        }, {
-            test: /\.less$/, // 配置处理 .less 文件的第三方 loader 规则
-            use: ['style-loader', 'css-loader', 'less-loader']
-        }, {
-            test: /\.scss$/, // 配置处理 .scss 文件的第三方 loader 规则                
-            use: ['style-loader', 'css-loader', 'sass-loader']
-        }, {
-            test: /\.(jpg|png|gif|bmp|jpeg)$/, // 配置处理图片路径的第三方 loader 规则 
-            use: [{
-                // 处理图片和字体的第三方loader
-                loader: 'url-loader',
-                options: {
-                    /**
-                     * 详解:
-                     *      limit给定的值是图片的大小, 单位是byte,如果引用的图片大于等于给定的limit值,则不会被转为base64格式的字符串, 如果图片小于给定的 limit 值, 则会被转为base64格式的字符串
-                     * 注意:
-                     *      图片路径虽然不会被转为base64格式的字符串,但是会被转为hash值,主要是为了防止不同文件夹中的图片的重名
-                     */
-                    limit: 171371,
-                    /**
-                     * 详解:
-                     *      如果想要即显示图片的原本名字和格式,但又不想因为重名而显示出同一张图片按照以下配置
-                     *      hash值最多32位, [hash:8] 意味着在图片名称前面放置一个8位的hash值然后通过 "-"连接
-                     *      [name] 设置图片名称为原本的图片名称
-                     *      [ext] 设置图片的格式为原本图片的格式
-                     */
-                    name: '[hash:8]-[name].[ext]'
-                }
-            }]
-        }, {
-            test: /\.(ttf|woff2|woff|eot|svg)/, // 配置处理字体文件的第三方 loader 规则 
-            use: 'url-loader'
-        }]
+                test: /\.css$/, // 配置处理 .css 文件的第三方 loader 规则
+                use: ['style-loader', 'css-loader']
+            }, {
+                test: /\.less$/, // 配置处理 .less 文件的第三方 loader 规则
+                use: ['style-loader', 'css-loader', 'less-loader']
+            }, {
+                test: /\.scss$/, // 配置处理 .scss 文件的第三方 loader 规则                
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            }, {
+                test: /\.(jpg|png|gif|bmp|jpeg)$/, // 配置处理图片路径的第三方 loader 规则 
+                use: [{
+                    // 处理图片和字体的第三方loader
+                    loader: 'url-loader',
+                    options: {
+                        /**
+                         * 详解:
+                         *      limit给定的值是图片的大小, 单位是byte,如果引用的图片大于等于给定的limit值,则不会被转为base64格式的字符串, 如果图片小于给定的 limit 值, 则会被转为base64格式的字符串
+                         * 注意:
+                         *      图片路径虽然不会被转为base64格式的字符串,但是会被转为hash值,主要是为了防止不同文件夹中的图片的重名
+                         */
+                        limit: 171371,
+                        /**
+                         * 详解:
+                         *      如果想要即显示图片的原本名字和格式,但又不想因为重名而显示出同一张图片按照以下配置
+                         *      hash值最多32位, [hash:8] 意味着在图片名称前面放置一个8位的hash值然后通过 "-"连接
+                         *      [name] 设置图片名称为原本的图片名称
+                         *      [ext] 设置图片的格式为原本图片的格式
+                         */
+                        name: '[hash:8]-[name].[ext]'
+                    }
+                }]
+            }, {
+                test: /\.(ttf|woff2|woff|eot|svg)$/, // 配置处理字体文件的第三方 loader 规则 
+                use: 'url-loader'
+            },
+            {
+                test: /\.js$/, // 配置 babel 来转换高级的JS语法
+                use: 'babel-loader',
+                exclude: /node_modules/ // 忽略node_modules目录下的js文件转换
+            }
+        ]
     }
 }

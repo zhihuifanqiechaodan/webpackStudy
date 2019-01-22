@@ -3,7 +3,7 @@
  * @Author: Tank
  * @GitHub: https://github.com/zhihuifanqiechaodan
  * @Date: 2019-01-18 14:16:47
- * @LastEditTime: 2019-01-19 17:04:16
+ * @LastEditTime: 2019-01-22 16:27:37
  */
 
 // main.js文件项目的入口文件
@@ -85,3 +85,30 @@ import './css/index.less'
 import './css/index.scss'
 // 使用 import 语法, 导入 bootstrap 中字体样式
 import 'bootstrap/dist/css/bootstrap.css'
+/**--------------------------------------------我是分割线------------------------------------------------ */
+/**
+ * webapck无法处理高级ES6或者ES7语法,需要借助于第三方loader
+ * 第一部分:
+ *      1.通过babel,可以将高级的语法转为低级的语法, 需要安装以下两套包, 安装babel相关的loader
+ *      2.第一套包: npm i babel-core babel-loader babel-plugin-transform-runtime -D // babel的转换工具
+ *      3.第二套包: npm i babel-preset-env babel-preset-stage-0 -D // 语法的对应关系
+ * 第二部分:
+ *      1.打开webpack.config.js文件, 在 module 节点下的rules数组中, 添加一个新的匹配规则
+ *      1.1 {test:/\.js/$, use:'babel-loader', exclude:/node_modules/}
+ *      1.2 注意: 在配置babel的loader规则的时候, 必须用exclude把node_modules这个目录排除掉
+ *      1.3 如果不排除, 则babel会把node_modules文件中所有第三方js文件都打包编译, 非常消耗CPU同时打包速度非常慢
+ *      1.4 如果不排除,哪怕babel把所有的node_modules中JS文件打包编译完成, 项目也无法正常运行
+ *      2.在项目根目录中, 新建一个.babelrc的babel配置卫检, 这个配置文件属于JSON格式,书写要符合JSON规范
+ *      2.1在 .babelre 写如下配置:
+ *      {
+ *          presets: ["env", "stage-0"]
+ *          plugins: ["transform-runtime"]
+ *      }
+ */
+class Person {
+    static obj = {
+        name: '番茄'
+    }
+}
+console.log(Person.obj)
+/**--------------------------------------------我是分割线------------------------------------------------ */
