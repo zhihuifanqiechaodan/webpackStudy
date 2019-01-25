@@ -3,10 +3,17 @@
  * @Author: Tank
  * @GitHub: https://github.com/zhihuifanqiechaodan
  * @Date: 2019-01-18 14:16:47
- * @LastEditTime: 2019-01-22 16:27:37
+ * @LastEditTime: 2019-01-25 15:12:05
  */
-
-// main.js文件项目的入口文件
+// main.js文件是项目的入口文件
+/**--------------------------------------------我是分割线------------------------------------------------ */
+/**
+ * 包的查找规则:
+ *      1.找项目根目录中有没有 node_modules 的文件夹
+ *      2.在 node_modules 中根据包名, 找到对应的XXX文件夹
+ *      3.在 XXX 文件夹中, 找一个叫做package.jaon的包配置文件
+ *      4.在 package.json 文件中, 查找一个叫做 main 属性[main属性指定了这个包在被加载的时候, 的入口文件]
+ */
 /**--------------------------------------------我是分割线------------------------------------------------ */
 /**
  * 使用 webpack-dev-server 这个工具来实现自动编译的功能
@@ -92,7 +99,7 @@ import 'bootstrap/dist/css/bootstrap.css'
  *      1.通过babel,可以将高级的语法转为低级的语法, 需要安装以下两套包, 安装babel相关的loader
  *      2.第一套包: npm i babel-core babel-loader babel-plugin-transform-runtime -D // babel的转换工具
  *      3.第二套包: npm i babel-preset-env babel-preset-stage-0 -D // 语法的对应关系
- * 第二部分:
+ * 配置部分:
  *      1.打开webpack.config.js文件, 在 module 节点下的rules数组中, 添加一个新的匹配规则
  *      1.1 {test:/\.js/$, use:'babel-loader', exclude:/node_modules/}
  *      1.2 注意: 在配置babel的loader规则的时候, 必须用exclude把node_modules这个目录排除掉
@@ -101,8 +108,8 @@ import 'bootstrap/dist/css/bootstrap.css'
  *      2.在项目根目录中, 新建一个.babelrc的babel配置卫检, 这个配置文件属于JSON格式,书写要符合JSON规范
  *      2.1在 .babelre 写如下配置:
  *      {
- *          presets: ["env", "stage-0"]
- *          plugins: ["transform-runtime"]
+ *          presets: ["env", "stage-0"] // 语法转化的对应关系
+ *          plugins: ["transform-runtime"] // babel的转换工具
  *      }
  */
 class Person {
@@ -111,4 +118,62 @@ class Person {
     }
 }
 console.log(Person.obj)
+/**--------------------------------------------我是分割线------------------------------------------------ */
+/**
+ * 在webpack构建工具中使用vue
+ * 第一部分:
+ *      1.npm i vue -S // 安装vue包
+ *      2.import Vue from 'vue' // 在main.js文件中引用vue
+ *    注意:
+ *      1.在webpack中, 使用 import Vue from 'vue' 导入的"vue" 构造函数功能不够完整
+ *      2.只提供了runtime-only的方式, 并没有提供像网页中那样使用script导入的包完整
+ *      3.打开webpack.config配置文件,新建一个resolve节点,在其中的alias重新配置vue包引用的路径,引用完整的vue.js包
+ * 配置部分:
+ *      // resolve配置webpack如何寻找模块对应的文件
+ *       resolve: {
+ *          // 配置项通过别名来把原来导入路径映射成一个新的导入路径
+ *          alias: {
+ *             // 修改 vue 被导入时候的包的路径
+ *            "vue$": "vue/dist/vue.js"
+ *          }
+ *       }
+ *
+ * 第二部分:
+ *      1.webpack默认无法打包 .vue 文件, 需要安装相关的 loader;
+ *      2.如果想要打包处理 css 文件, 需要安装 npm i vue-loader vue-template-compiler -D
+ * 配置部分:
+ *      1.在配置文件中, 新增 loader 配置项 { test:/\.vue$/, use: "vue-loader" }
+ */
+// 使用 import 语法, 导入 vue 包
+import Vue from 'vue'
+import app from './app.vue'
+let vm = new Vue({
+    el: "#app",
+    data: {
+        msg: '123456'
+    },
+    /**
+     * 通过render函数将app组件放到页面中去, 当作主页面, render函数创建的组件会替换页面中el:"#app"控制的区域
+     * render: function (createElements) {
+     *      return createElements(app)
+     *  }
+     * 以下是简写: render: c => c(app)
+     */
+    render: c => c(app)
+})
+/**
+ * 总结梳理: webpack 中如何使用vue
+ * 1.安装vue的包: 
+ *      npm i vue -S
+ * 2.由于 webpack 中, 推荐使用 .vue 这个组件模板文件定义组件, 所以需要安装能解析这种文件的loader:
+ *      npm i vue-loader vue-template-vue-template-compiler -D
+ * 3.在 main.js 入口文件中, 导入 vue 模块 import Vue from 'vue'
+ * 4.在webpack.config.js配置文件中的resolve节点下alias节点中配置修改vue被导入时包的路径:
+ *      resolve:{ alias:{ "vue$": "vue/dist/vue.js" } }
+ * 5.定义一个 .vue 结尾的app组件, 其中组件由三部分组成: template script style
+ * 6.使用 import app from './app.vue' 导入这个组件
+ * 7.创建 vm 实例 :
+ *      let vm = new Vue({ el: "#app", render: c => c(app) })
+ * 8.在 index.html 页面中创建一个 id 为 app 的 div 元素, 作为 vm 实例要控制的区域
+ */
 /**--------------------------------------------我是分割线------------------------------------------------ */

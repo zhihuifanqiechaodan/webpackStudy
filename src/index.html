@@ -3,7 +3,7 @@
  * @Author: Tank
  * @GitHub: https://github.com/zhihuifanqiechaodan
  * @Date: 2019-01-18 14:16:59
- * @LastEditTime: 2019-01-22 09:10:45
+ * @LastEditTime: 2019-01-25 14:03:22
  -->
 
 <!DOCTYPE html>
@@ -17,22 +17,26 @@
 </head>
 
 <body>
-    <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-        <li>7</li>
-        <li>8</li>
-        <li>9</li>
-        <li>10</li>
-    </ul>
-    <div></div>
-    <button type="button" class="btn btn-default" aria-label="Left Align">
-        <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-    </button>
+    <div id="app">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+        </ul>
+        <div class='box'></div>
+        <button type="button" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+        </button>
+        <p>{{msg}}</p>
+        <login></login>
+    </div>
     <!-- 当使用 html-webapack-plugin 插件后, 不再需要手动处理bundle.js的引用路径了, 这个插件会自动创建一个合适的script, 并且引用了正确的路径 -->
     <!-- <script src='/bundle.js'></script> -->
 </body>

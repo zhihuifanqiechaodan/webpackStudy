@@ -3,13 +3,15 @@
  * @Author: Tank
  * @GitHub: https://github.com/zhihuifanqiechaodan
  * @Date: 2019-01-18 14:17:17
- * @LastEditTime: 2019-01-22 15:13:55
+ * @LastEditTime: 2019-01-25 15:04:31
  */
 const path = require('path')
 // 启用热跟新的第二步
 const webpack = require('webpack')
 // 导入在内存中生成 HTML 页面的插件 (注意: 只要是插件都一定要放到plugins这个节点中)
 const htmlWebpackPlugin = require('html-webpack-plugin')
+// 处理 .vue 文件的插件的第二步
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 // 这个配置文件, 起始就是一个 js 文件, 通过Node中的模块操作, 向外暴露了一个配置对象
 module.exports = {
@@ -49,7 +51,9 @@ module.exports = {
             template: path.join(__dirname, './src/index.html'),
             // 指定生成页面的名称 (注意: 浏览器打开默认访问的是index.html页面)
             filename: 'index.html'
-        })
+        }),
+        // 处理 .vue 文件的插件的第三步
+        new VueLoaderPlugin()
     ],
     // 这个节点, 用于配置所有第三方模块的"加载器"
     module: {
@@ -94,7 +98,19 @@ module.exports = {
                 test: /\.js$/, // 配置 babel 来转换高级的JS语法
                 use: 'babel-loader',
                 exclude: /node_modules/ // 忽略node_modules目录下的js文件转换
+            },
+            {
+                test: /\.vue$/, // 配置处理 .vue 文件的第三方 loader 规则的第一步
+                use: "vue-loader"
             }
         ]
+    },
+    // resolve配置webpack如何寻找模块对应的文件
+    resolve: {
+        // 配置项通过别名来把原来导入路径映射成一个新的导入路径
+        alias: {
+            // 修改 vue 被导入时候的包的修改路径
+            "vue$": "vue/dist/vue.js"
+        }
     }
 }
