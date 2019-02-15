@@ -3,7 +3,7 @@
  * @Author: Tank
  * @GitHub: https://github.com/zhihuifanqiechaodan
  * @Date: 2019-01-18 14:16:47
- * @LastEditTime: 2019-02-15 15:50:27
+ * @LastEditTime: 2019-02-15 17:00:29
  */
 // main.js文件是项目的入口文件
 /**--------------------------------------------我是分割线------------------------------------------------ */
@@ -146,7 +146,26 @@ console.log(Person.obj)
  */
 // 使用 import 语法, 导入 vue 包
 import Vue from 'vue'
+// 导入组件
 import app from './app.vue'
+import login from './components/login.vue'
+import acount from './components/acount.vue'
+// 1. 使用 import 语法, 导入 vue-router 包
+import VueRouter from 'vue-router'
+// 2. 手动安装 VueRouter
+Vue.use(VueRouter)
+// 3. 创建路由对象
+const router = new VueRouter({
+    routes: [{
+            path: '/login',
+            component: login
+        },
+        {
+            path: '/acount',
+            component: acount
+        }
+    ]
+})
 let vm = new Vue({
     el: "#app",
     data: {
@@ -159,7 +178,8 @@ let vm = new Vue({
      *  }
      * 以下是简写: render: c => c(app)
      */
-    render: c => c(app)
+    render: c => c(app),
+    router // 将路由对象挂载到 VM 实例上
 })
 /**
  * 总结梳理: webpack 中如何使用vue
