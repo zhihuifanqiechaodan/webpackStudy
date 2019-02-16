@@ -3,7 +3,7 @@
  * @Author: Tank
  * @GitHub: https://github.com/zhihuifanqiechaodan
  * @Date: 2019-01-18 14:16:47
- * @LastEditTime: 2019-02-16 09:38:48
+ * @LastEditTime: 2019-02-16 09:56:59
  */
 // main.js文件是项目的入口文件
 /**--------------------------------------------我是分割线------------------------------------------------ */
@@ -222,4 +222,11 @@ let vm = new Vue({
  * 注意: 使用 export 可以向外暴露多个成员, 同时, 如果某些成员, 我们在 import 的时候不需要, 则可以不再 {} 中定义
  * 注意: 使用 export 导出的成员, 必须严格按照导出时候的名称, 来使用 { } 来接收
  * 注意: 使用 export 导出的成员, 如果就想换个名称来接收, 可以使用 as 来起别名
+ */
+/**
+ * 组件中style标签lang属性和scoped属性
+ * 注意: 普通的 style 标签只支持普通的样式写法, 如果要启用 scss 或 less 写法,需要为style元素设置lang属性
+ * 注意: 设置 scoped 属性意味着当前你写的样式只会在当前组件内生效, 不会污染全局样式
+ * 注意: 只要 style 标签是在 .vue 组件中定义的, 建议都为 style 开启 scoped 属性
+ * 例如: <style lang="scss" scoped> </style>
  */
