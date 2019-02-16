@@ -3,7 +3,7 @@
  * @Author: Tank
  * @GitHub: https://github.com/zhihuifanqiechaodan
  * @Date: 2019-01-18 14:16:47
- * @LastEditTime: 2019-02-16 09:56:59
+ * @LastEditTime: 2019-02-16 10:04:49
  */
 // main.js文件是项目的入口文件
 /**--------------------------------------------我是分割线------------------------------------------------ */
@@ -148,9 +148,6 @@ console.log(Person.obj)
 import Vue from 'vue'
 // 导入组件
 import app from './app.vue'
-import login from './components/login.vue'
-import acount from './components/acount.vue'
-import home from './components/subcom/home.vue'
 /**
  * 结合webpack使用vue-router
  */
@@ -158,23 +155,9 @@ import home from './components/subcom/home.vue'
 import VueRouter from 'vue-router'
 // 2. 手动安装 VueRouter
 Vue.use(VueRouter)
-// 3. 创建路由对象
-const router = new VueRouter({
-    routes: [{
-            path: '/login',
-            component: login,
-            // 子路由添加一个children属性, 它是一个数组
-            children: [{
-                path: 'home', // 注意: 子路由不加 '/'
-                component: home
-            }]
-        },
-        {
-            path: '/acount',
-            component: acount
-        }
-    ]
-})
+// 3. 导入创建的路由对象
+import router from './router/router'
+
 let vm = new Vue({
     el: "#app",
     data: {
