@@ -3,7 +3,7 @@
  * @Author: Tank
  * @GitHub: https://github.com/zhihuifanqiechaodan
  * @Date: 2019-01-18 14:16:47
- * @LastEditTime: 2019-02-15 17:00:29
+ * @LastEditTime: 2019-02-16 09:38:48
  */
 // main.js文件是项目的入口文件
 /**--------------------------------------------我是分割线------------------------------------------------ */
@@ -150,6 +150,10 @@ import Vue from 'vue'
 import app from './app.vue'
 import login from './components/login.vue'
 import acount from './components/acount.vue'
+import home from './components/subcom/home.vue'
+/**
+ * 结合webpack使用vue-router
+ */
 // 1. 使用 import 语法, 导入 vue-router 包
 import VueRouter from 'vue-router'
 // 2. 手动安装 VueRouter
@@ -158,7 +162,12 @@ Vue.use(VueRouter)
 const router = new VueRouter({
     routes: [{
             path: '/login',
-            component: login
+            component: login,
+            // 子路由添加一个children属性, 它是一个数组
+            children: [{
+                path: 'home', // 注意: 子路由不加 '/'
+                component: home
+            }]
         },
         {
             path: '/acount',
