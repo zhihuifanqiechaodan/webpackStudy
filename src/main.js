@@ -3,7 +3,7 @@
  * @Author: Tank
  * @GitHub: https://github.com/zhihuifanqiechaodan
  * @Date: 2019-01-18 14:16:47
- * @LastEditTime: 2019-02-16 10:04:49
+ * @LastEditTime: 2019-02-16 10:12:55
  */
 // main.js文件是项目的入口文件
 /**--------------------------------------------我是分割线------------------------------------------------ */
@@ -210,6 +210,8 @@ let vm = new Vue({
  * 组件中style标签lang属性和scoped属性
  * 注意: 普通的 style 标签只支持普通的样式写法, 如果要启用 scss 或 less 写法,需要为style元素设置lang属性
  * 注意: 设置 scoped 属性意味着当前你写的样式只会在当前组件内生效, 不会污染全局样式
+ * scoped实现的原理:
+ *  样式的 scoped 属性是 css 的属性选择器来实现的, 它会自动给根标签元素添加一个属性
  * 注意: 只要 style 标签是在 .vue 组件中定义的, 建议都为 style 开启 scoped 属性
  * 例如: <style lang="scss" scoped> </style>
  */
