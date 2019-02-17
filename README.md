@@ -3,10 +3,10 @@
  * @Author: Tank
  * @GitHub: https://github.com/zhihuifanqiechaodan
  * @Date: 2019-01-18 14:17:34
- * @LastEditTime: 2019-01-19 13:34:58
+ * @LastEditTime: 2019-02-17 14:51:30
  -->
 
-## 初步渐进的学习webpack的使
+## 初步渐进的学习webpack的使用
 
 #### 关于webpack
 
