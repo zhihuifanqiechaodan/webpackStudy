@@ -10,7 +10,7 @@
 
 #### 关于webpack
 
-借助webpack这个前端自动化构建工具, 可以完美实现资源的合并/打包/压缩/混淆等诸多功能
+借助webpack这个前端自动化构建工具, 可以实现资源的合并/打包/压缩/混淆等诸多功能
 
 根据官网的图片介绍webpack打包的过程
 
@@ -27,7 +27,7 @@
 2. 在项目根目录中打开命令行窗口/终端运行, 安装到项目依赖
 
    ```javascript
-   npm u webpack --save-dev 使用webpack打包构建项目
+   npm i webpack --save-dev 使用webpack打包构建项目
    ```
 
 
